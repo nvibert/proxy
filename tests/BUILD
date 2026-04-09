@@ -329,6 +329,26 @@ envoy_cc_test(
 )
 
 envoy_cc_test(
+    name = "bpf_metadata_integration_test",
+    srcs = ["bpf_metadata_integration_test.cc"],
+    repository = "@envoy",
+    deps = [
+        "//cilium:bpf_metadata_lib",
+        "//cilium/api:bpf_metadata_cc_proto",
+        "//cilium/api:npds_cc_proto",
+        "//cilium/api:nphds_cc_proto",
+        "@envoy//source/extensions/clusters/original_dst:original_dst_cluster_lib",
+        "@envoy//source/extensions/clusters/static:static_cluster_lib",
+        "@envoy//source/extensions/filters/network/tcp_proxy:config",
+        "@envoy//test/common/grpc:grpc_client_integration_lib",
+        "@envoy//test/integration:integration_lib",
+        "@envoy//test/test_common:environment_lib",
+        "@envoy//test/test_common:resources_lib",
+        "@envoy//test/test_common:utility_lib",
+    ],
+)
+
+envoy_cc_test(
     name = "health_check_sink_test",
     srcs = [
         "health_check_sink_server.cc",
